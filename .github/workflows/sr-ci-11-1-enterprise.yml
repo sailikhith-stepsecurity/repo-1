@@ -1,0 +1,33 @@
+# SR-CI-11.1 e2e, owner sailikhith-stepsecurity (int pilot tenant).
+# If the owner has an Active/FreeTrial subscription on int, no-id-token should
+# print the id_token_required notice and leave npm on the default registry;
+# with-id-token should get an enterprise session (binding oidc).
+name: SR-CI-11.1 enterprise owner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-id-token:
+    runs-on: macos-latest
+    steps:
+      - uses: sailikhith-stepsecurity/harden-runner@int/sr-ci-12-secure-registry-post
+        with:
+          egress-policy: audit
+          secure-registry: true
+      - run: echo "registry: $(npm config get registry)"
+
+  with-id-token:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: sailikhith-stepsecurity/harden-runner@int/sr-ci-12-secure-registry-post
+        with:
+          egress-policy: audit
+          secure-registry: true
+      - run: echo "registry: $(npm config get registry)"
