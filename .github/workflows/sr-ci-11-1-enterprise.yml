@@ -18,7 +18,7 @@ jobs:
         with:
           egress-policy: audit
           secure-registry: true
-      - run: echo "registry: $(npm config get registry)"
+      - run: echo "registry=$(npm config get registry)"
 
   with-id-token:
     runs-on: macos-latest
@@ -30,4 +30,4 @@ jobs:
         with:
           egress-policy: audit
           secure-registry: true
-      - run: echo "registry: $(npm config get registry)"
+      - run: echo "registry=$(npm config get registry)"
