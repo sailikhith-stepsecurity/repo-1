@@ -14,7 +14,7 @@ jobs:
   no-id-token:
     runs-on: macos-latest
     steps:
-      - uses: sailikhith-stepsecurity/harden-runner@int/sr-ci-12-secure-registry-post
+      - uses: sailikhith-stepsecurity/harden-runner@int/sr-ci-12.1-binding-summary
         with:
           egress-policy: audit
           secure-registry: true
@@ -26,7 +26,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: sailikhith-stepsecurity/harden-runner@int/sr-ci-12-secure-registry-post
+      - uses: sailikhith-stepsecurity/harden-runner@int/sr-ci-12.1-binding-summary
         with:
           egress-policy: audit
           secure-registry: true
